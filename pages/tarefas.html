@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGA CPS - Tarefas e Atividades</title>
+    <link rel="shortcut icon" href="../assets/images/Logo_CPS-01.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/tarefas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2b4b06a916.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="app-header">
+        <nav class="nav-container">
+            <div class="cps-logo">
+                <img src="../assets/images/cps_white.png" alt="Logo Centro Paula Souza">
+                <span class="brand-title">SIGA <span>Aluno</span></span>
+            </div>
+            <div class="header-unit">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Fatec Praia Grande</span>
+            </div>
+        </nav>
+    </header>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="tasks-main-header">
+                <div class="tasks-title-group">
+                    <a href="../index.html" class="btn-back" title="Voltar ao início">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    <h1>Minhas Tarefas</h1>
+                </div>
+                <div class="filter-controls">
+                    <button class="btn-filter active">Todas</button>
+                    <button class="btn-filter">Pendentes</button>
+                    <button class="btn-filter">Atrasadas</button>
+                    <button class="btn-filter">Concluídas</button>
+                </div>
+            </header>
+            <section class="top-overview">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <h3>Resumo de Entregas</h3>
+                    </div>
+                    <div class="stats-container">
+                        <div class="stat-item pending">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Pendentes</span>
+                        </div>
+                        <div class="stat-item late">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Atrasada</span>
+                        </div>
+                        <div class="stat-item done">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Concluída</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="platforms-card">
+                    <div class="section-header-sm">
+                        <i class="fa-solid fa-link"></i>
+                        <h3>Plataforma de Entrega</h3>
+                    </div>
+                    <div class="platform-links">
+                        <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer"
+                            class="platform-btn teams">
+                            <i class="fa-brands fa-microsoft"></i>
+                            <span>Acessar Microsoft Teams</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square external-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <div class="tasks-list-container">
+                <section class="tasks-section">
+                    <h2 class="section-title">
+                        <i class="fa-regular fa-clock"></i> Pendentes e Próximas Entregas
+                    </h2>
+                    <article class="task-card status-pending">
+                        <div class="task-badge-container">
+                            <span class="badge badge-warning">Pendente</span>
+                            <span class="platform-tag teams-tag"><i class="fa-brands fa-microsoft"></i> MS Teams</span>
+                        </div>
+                        <div class="task-info">
+                            <span class="discipline-code">Laboratório Web</span>
+                            <h3 class="task-title">Desenvolvimento de Aplicação Web Responsiva com Vite e React</h3>
+                            <p class="task-description">Implementar componentes interativos e integração com API REST
+                                conforme especificado nas aulas práticas.</p>
+                            <div class="task-meta">
+                                <span><i class="fa-regular fa-calendar"></i> Prazo: <strong>25/10/2026 às
+                                        23:59</strong></span>
+                                <span><i class="fa-regular fa-file-code"></i> Formato: Link do Repositório Git</span>
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer"
+                                class="btn-action btn-teams">
+                                Entregar no Teams <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="task-card status-pending">
+                        <div class="task-badge-container">
+                            <span class="badge badge-warning">Pendente</span>
+                            <span class="platform-tag teams-tag"><i class="fa-brands fa-microsoft"></i> MS Teams</span>
+                        </div>
+                        <div class="task-info">
+                            <span class="discipline-code">Programação Mobile I</span>
+                            <h3 class="task-title">Layout de Interface Android em Kotlin com Material Design 3</h3>
+                            <p class="task-description">Criação da tela de dashboard e fluxo de navegação entre
+                                Activities em projeto Kotlin.</p>
+                            <div class="task-meta">
+                                <span><i class="fa-regular fa-calendar"></i> Prazo: <strong>28/10/2026 às
+                                        19:00</strong></span>
+                                <span><i class="fa-regular fa-file-code"></i> Formato: Projeto Android Studio /
+                                    ZIP</span>
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer"
+                                class="btn-action btn-teams">
+                                Entregar no Teams <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+                <section class="tasks-section">
+                    <h2 class="section-title late-title">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Entregas Atrasadas
+                    </h2>
+                    <article class="task-card status-late">
+                        <div class="task-badge-container">
+                            <span class="badge badge-danger">Atrasado</span>
+                            <span class="platform-tag teams-tag"><i class="fa-brands fa-microsoft"></i> MS Teams</span>
+                        </div>
+                        <div class="task-info">
+                            <span class="discipline-code">Integração e Entrega Contínua</span>
+                            <h3 class="task-title">Pipeline de CI/CD com GitHub Actions e Docker</h3>
+                            <p class="task-description">Configuração de workflow automatizado de testes e build de
+                                imagem Docker para implantação contínua.</p>
+                            <div class="task-meta">
+                                <span><i class="fa-regular fa-calendar"></i> Venceu em:
+                                    <strong>18/10/2026</strong></span>
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer"
+                                class="btn-action btn-teams btn-late">
+                                Enviar com Atraso no Teams <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+                <section class="tasks-section">
+                    <h2 class="section-title done-title">
+                        <i class="fa-regular fa-circle-check"></i> Concluídas Recentes
+                    </h2>
+                    <article class="task-card status-done">
+                        <div class="task-badge-container">
+                            <span class="badge badge-success">Entregue</span>
+                            <span class="platform-tag teams-tag"><i class="fa-brands fa-microsoft"></i> MS Teams</span>
+                        </div>
+                        <div class="task-info">
+                            <span class="discipline-code">Internet das Coisas</span>
+                            <h3 class="task-title">Protótipo de Leitura de Sensores ESP32 com Protocolo MQTT</h3>
+                            <p class="task-description">Coleta de dados de consumo de energia e envio para broker MQTT
+                                em nuvem.</p>
+                            <div class="task-meta">
+                                <span><i class="fa-solid fa-check"></i> Entregue dia: <strong>12/10/2026</strong></span>
+                                <span><i class="fa-solid fa-star"></i> Nota: <strong>10.0</strong></span>
+                            </div>
+                        </div>
+                        <div class="task-actions">
+                            <a href="https://teams.microsoft.com" target="_blank" rel="noopener noreferrer"
+                                class="btn-action btn-view">
+                                Ver Tarefa no Teams <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

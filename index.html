@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGA CPS - Aluno</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="shortcut icon" href="assets/images/Logo_CPS-01.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2b4b06a916.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="app-header">
+        <nav class="nav-container">
+            <div class="cps-logo">
+                <img src="assets/images/cps_white.png" alt="Logo Centro Paula Souza">
+                <span class="brand-title">SIGA <span>Aluno</span></span>
+            </div>
+            <div class="header-unit">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Fatec Praia Grande</span>
+            </div>
+        </nav>
+    </header>
+    <div class="app-container">
+        <aside class="sidebar">
+            <section class="card carteirinha-estudante">
+                <div class="card-header-small">
+                    <i class="fa-solid fa-id-card"></i>
+                    <h3>Carteirinha Digital</h3>
+                </div>
+                <div class="carteirinha-card">
+                    <div class="carteirinha-wrapper">
+                        <object class="carteirinha-estudante-doc"
+                            data="assets/doc/BIANCA AGANTE TIENE.PDF#toolbar=0&navpanes=0&scrollbar=0"
+                            type="application/pdf">
+                            <p>Seu navegador não possui suporte a visualização de PDF. <a
+                                    href="assets/doc/BIANCA AGANTE TIENE.PDF">Baixar arquivo</a>.</p>
+                        </object>
+                    </div>
+                    <span><i class="fa-solid fa-expand"></i>Expandir PDf</span>
+                </div>
+            </section>
+            <section class="card info-aluno">
+                <div class="aluno-header">
+                    <img class="foto-aluno" src="assets/images/foto-aluno.JPG" alt="Foto da aluna Bianca">
+                    <div class="aluno-title">
+                        <h2>BIANCA AGANTE TIENE</h2>
+                        <span class="ra-tag">RA 1291392512025</span>
+                        <div class="link-perfil">
+                            <a href="#">Ver mais informações</a>
+                            <span>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="aluno-details">
+                    <div class="info-group">
+                        <span class="label-info">Status</span>
+                        <p class="status-badge status-ativo">
+                            <i class="fa-solid fa-circle"></i>Em curso
+                        </p>
+                    </div>
+                    <div class="info-group">
+                        <span class="label-info">Curso</span>
+                        <p class="info-value">Desenvolvimento de Software Multiplataforma</p>
+                    </div>
+                    <div class="info-group">
+                        <span class="label-info">Turno</span>
+                        <p class="info-value">Vespertino (Tarde)</p>
+                    </div>
+                    <div class="info-group">
+                        <span class="label-info">Unidade</span>
+                        <p class="info-value">Faculdade de Tecnologia de Praia Grande</p>
+                    </div>
+                </div>
+                <div class="link-sair">
+                    <a href="#">Sair</a>
+                    <span>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </div>
+            </section>
+        </aside>
+        <main class="main-content">
+            <section class="quadro-aviso">
+                <div class="aviso-content">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>A semana de provas começa na próxima semana. Fique atento aos prazos!</span>
+                </div>
+                <button aria-label="Fechar aviso" class="btn-close-aviso">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </section>
+            <section class="quadros-grid">
+                <div class="quadro-card">
+                    <div class="quadro-header header-azul">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h3>Curso</h3>
+                    </div>
+                    <div class="quadro-links">
+                        <a href="pages/calendario.html" class="item-link"><i class="fa-regular fa-calendar-days"></i>
+                            Calendário acadêmico</a>
+                        <a href="pages/tarefas.html" class="item-link"><i class="fa-solid fa-list-check"></i> Tarefas</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-chart-line"></i> Notas</a>
+                        <a href="#" class="item-link"><i class="fa-regular fa-clock"></i> Faltas</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-calendar-week"></i> Horário</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-book-open"></i> Disciplinas</a>
+                    </div>
+                </div>
+                <div class="quadro-card">
+                    <div class="quadro-header header-vermelho">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <h3>Documentação</h3>
+                    </div>
+                    <div class="quadro-links">
+                        <a href="#" class="item-link"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-folder-open"></i> Documentos e
+                            Declarações</a>
+                    </div>
+                </div>
+                <div class="quadro-card full-width">
+                    <div class="quadro-header header-destaque">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <h3>Solicitações</h3>
+                    </div>
+                    <div class="quadro-links grid-2-col">
+                        <a href="#" class="item-link"><i class="fa-solid fa-award"></i>Aproveitamento de Estudos</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-certificate"></i>Exame de Proficiência</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-user-check"></i>Aproveitamento por
+                            Competência</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-pen-to-square"></i>Revisão de Notas ou
+                            Faltas</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-house-medical"></i>Regime Domiciliar</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-rotate"></i>Rematrícula</a>
+                        <a href="#" class="item-link"><i class="fa-solid fa-file-pen"></i>Exame final</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
