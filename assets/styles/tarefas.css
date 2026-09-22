@@ -465,4 +465,20 @@ body {
     .task-actions {
         width: 100%;
     }
+
+    .app-container {
+        padding: 12px;
+    }
+
+    .tasks-main-header h1 {
+        font-size: 14px;
+    }
+
+    .filter-controls button {
+        font-size: 10px;
+    }
+
+    .stats-container .stat-item span {
+        font-size: 10px;
+    }
 }
