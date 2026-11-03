@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2b4b06a916.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="app-header">
         <nav class="nav-container">
@@ -143,12 +145,15 @@
             </div>
         </main>
         <aside class="sidebar">
+            <button type="button" class="btn-create-event" id="btnCriarEvento">Criar novo evento</button>
             <section class="mini-calendar-section">
                 <div class="mini-calendar-header">
                     <h3>Outubro 2026</h3>
                     <div class="mini-calendar-nav">
-                        <button class="btn-icon-sm" title="Mês anterior"><i class="fa-solid fa-chevron-left"></i></button>
-                        <button class="btn-icon-sm" title="Próximo mês"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="btn-icon-sm" title="Mês anterior"><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <button class="btn-icon-sm" title="Próximo mês"><i
+                                class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </div>
                 <div class="mini-calendar-grid">
@@ -248,6 +253,499 @@
             </section>
         </aside>
     </div>
+    <div class="modal-overlay" id="modalEvento" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalEventoTitulo">
+            <div class="modal-header">
+                <div class="modal-header-icon"><i class="fa-regular fa-calendar-plus"></i></div>
+                <div>
+                    <h2 id="modalEventoTitulo">Criar novo evento</h2>
+                    <p id="modalEventoSub">Organize seu encontro e adicione colegas da sua turma.</p>
+                </div>
+                <button type="button" class="modal-close" id="btnFecharModal" aria-label="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="formEvento" novalidate>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <div class="form-section-header">
+                            <h3>Dados do evento</h3>
+                            <span class="required-note"><span>*</span> Campos obrigatórios</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="evTitulo">Título do evento <span>*</span></label>
+                            <input type="text" id="evTitulo" data-campo="titulo" maxlength="80"
+                                placeholder="Ex.: Reunião do projeto">
+                            <small class="field-error" data-erro="titulo"></small>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="evData">Data <span>*</span></label>
+                                <input type="date" id="evData" data-campo="data" min="2026-10-01" max="2026-10-31">
+                                <small class="field-error" data-erro="data"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="evInicio">Início <span>*</span></label>
+                                <input type="time" id="evInicio" data-campo="inicio">
+                                <small class="field-error" data-erro="inicio"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="evTermino">Término <span>*</span></label>
+                                <input type="time" id="evTermino" data-campo="termino">
+                                <small class="field-error" data-erro="termino"></small>
+                            </div>
+                        </div>
+                        <label class="form-check">
+                            <input type="checkbox" id="evDiaInteiro">
+                            <span>Evento de dia inteiro</span>
+                        </label>
+                        <div class="form-group">
+                            <label for="evLocal">Local</label>
+                            <input type="text" id="evLocal" maxlength="60" placeholder="Ex.: Biblioteca">
+                        </div>
+                        <div class="form-group">
+                            <label for="evDescricao">Descrição</label>
+                            <textarea id="evDescricao" maxlength="300" placeholder="Detalhes do encontro"></textarea>
+                        </div>
+                        <p class="form-privacy">
+                            <i class="fa-solid fa-lock"></i>
+                            O evento ficará visível para você e os colegas adicionados.
+                        </p>
+                    </div>
+                    <div class="colleagues-panel">
+                        <h3><i class="fa-solid fa-user-group"></i> Adicionar colegas</h3>
+                        <p class="class-name">Desenvolvimento de Software Multiplataforma</p>
+                        <p class="class-meta">4º semestre • Vespertino</p>
+                        <label class="panel-label" for="evBusca">Buscar colega pelo nome</label>
+                        <div class="search-box">
+                            <input type="text" id="evBusca" autocomplete="off" placeholder="Digite o nome">
+                            <button type="button" class="search-clear" id="btnLimparBusca" aria-label="Limpar busca"
+                                hidden>
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="results-box">
+                            <div class="results-count" id="contagemResultados"></div>
+                            <ul class="results-list" id="listaColegas"></ul>
+                            <button type="button" class="btn-add-colleague" id="btnAdicionarColega" hidden></button>
+                        </div>
+                        <div class="selected-header">
+                            <strong id="contagemSelecionados">Selecionados (0)</strong>
+                            <button type="button" class="btn-link" id="btnLimparSelecao" hidden>Limpar</button>
+                        </div>
+                        <div class="chips" id="chipsSelecionados"></div>
+                        <p class="invite-note">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Os convites serão enviados somente após você criar o evento.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="footer-summary" id="resumoParticipantes">
+                        <i class="fa-solid fa-user-group"></i>
+                        <span id="textoResumo">Somente você neste evento</span>
+                    </span>
+                    <div class="footer-actions">
+                        <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+                        <button type="submit" class="btn-primary" id="btnSalvarEvento">
+                            <i class="fa-solid fa-plus" id="iconeSalvar"></i>
+                            <span id="textoSalvar">Criar evento</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const turma = 'DSM • 4º semestre • Vespertino';
+            const CHAVE_COLEGAS = 'siga_colegas';
+            const DATA_MIN = '2026-10-01';
+            const DATA_MAX = '2026-10-31';
+            const DATA_PADRAO = '2026-10-21';
+
+            let colegas = [];
+            try {
+                const salvos = JSON.parse(localStorage.getItem(CHAVE_COLEGAS));
+                colegas = Array.isArray(salvos) ? salvos : [];
+            } catch (erro) {
+                colegas = [];
+            }
+
+            const $ = (id) => document.getElementById(id);
+            const overlay = $('modalEvento');
+            const form = $('formEvento');
+            const campos = {
+                titulo: $('evTitulo'),
+                data: $('evData'),
+                inicio: $('evInicio'),
+                termino: $('evTermino')
+            };
+            const diaInteiro = $('evDiaInteiro');
+            const local = $('evLocal');
+            const busca = $('evBusca');
+            const btnLimparBusca = $('btnLimparBusca');
+            const btnLimparSelecao = $('btnLimparSelecao');
+            const btnAdicionarColega = $('btnAdicionarColega');
+            const listaColegas = $('listaColegas');
+            const contagemResultados = $('contagemResultados');
+            const contagemSelecionados = $('contagemSelecionados');
+            const chips = $('chipsSelecionados');
+            const textoResumo = $('textoResumo');
+            const selecionados = new Set();
+
+            function normalizar(texto) {
+                return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            }
+
+            function salvarColegas() {
+                try {
+                    localStorage.setItem(CHAVE_COLEGAS, JSON.stringify(colegas));
+                } catch (erro) {
+                    return;
+                }
+            }
+
+            function gerarLogin(nome) {
+                const partes = normalizar(nome).split(/\s+/).filter(Boolean);
+                const base = partes.length > 1
+                    ? partes[0] + '.' + partes[partes.length - 1]
+                    : partes[0];
+                const login = base.toUpperCase();
+                let final = login;
+                let contador = 2;
+                while (colegas.some((c) => c.login === final)) {
+                    final = login + contador;
+                    contador++;
+                }
+                return final;
+            }
+
+            function iniciais(nome) {
+                const partes = nome.trim().split(/\s+/);
+                const ultima = partes.length > 1 ? partes[partes.length - 1][0] : '';
+                return (partes[0][0] + ultima).toUpperCase();
+            }
+
+            function criarAvatar(nome) {
+                const avatar = document.createElement('span');
+                avatar.className = 'avatar';
+                avatar.textContent = iniciais(nome);
+                return avatar;
+            }
+
+            function adicionarColega() {
+                const nome = busca.value.trim().replace(/\s+/g, ' ');
+                if (nome.length < 2) {
+                    return;
+                }
+                const colega = { id: Date.now(), nome: nome, login: gerarLogin(nome) };
+                colegas.push(colega);
+                salvarColegas();
+                selecionados.add(colega.id);
+                busca.value = '';
+                renderResultados();
+                renderSelecionados();
+            }
+
+            function removerColega(id) {
+                colegas = colegas.filter((c) => c.id !== id);
+                selecionados.delete(id);
+                salvarColegas();
+                renderResultados();
+                renderSelecionados();
+            }
+
+            function criarItem(colega) {
+                const li = document.createElement('li');
+                const label = document.createElement('label');
+                const marcado = selecionados.has(colega.id);
+                label.className = 'colleague-item' + (marcado ? ' selected' : '');
+
+                const info = document.createElement('div');
+                info.className = 'colleague-info';
+                const nome = document.createElement('span');
+                nome.className = 'colleague-name';
+                nome.textContent = colega.nome;
+                const meta = document.createElement('span');
+                meta.className = 'colleague-meta';
+                meta.textContent = turma;
+                info.append(nome, meta);
+
+                const remover = document.createElement('button');
+                remover.type = 'button';
+                remover.className = 'colleague-remove';
+                remover.setAttribute('aria-label', 'Remover ' + colega.nome + ' da lista');
+                remover.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+                remover.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    removerColega(colega.id);
+                });
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = marcado;
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        selecionados.add(colega.id);
+                    } else {
+                        selecionados.delete(colega.id);
+                    }
+                    label.classList.toggle('selected', checkbox.checked);
+                    renderSelecionados();
+                });
+
+                label.append(criarAvatar(colega.nome), info, remover, checkbox);
+                li.appendChild(label);
+                return li;
+            }
+
+            function renderResultados() {
+                const bruto = busca.value.trim();
+                const termo = normalizar(bruto);
+                const lista = colegas.filter((c) => normalizar(c.nome).includes(termo));
+                const jaExiste = colegas.some((c) => normalizar(c.nome) === termo);
+
+                if (colegas.length === 0 && !bruto) {
+                    contagemResultados.textContent = 'Nenhum colega cadastrado. Digite um nome para adicionar.';
+                } else if (lista.length === 0) {
+                    contagemResultados.textContent = 'Nenhum colega encontrado';
+                } else {
+                    contagemResultados.textContent = lista.length + (lista.length === 1 ? ' colega encontrado' : ' colegas encontrados');
+                }
+
+                listaColegas.replaceChildren(...lista.map(criarItem));
+                btnLimparBusca.hidden = !busca.value;
+
+                const podeAdicionar = bruto.length >= 2 && !jaExiste;
+                btnAdicionarColega.hidden = !podeAdicionar;
+                if (podeAdicionar) {
+                    const icone = document.createElement('i');
+                    icone.className = 'fa-solid fa-user-plus';
+                    const texto = document.createElement('span');
+                    texto.textContent = 'Adicionar "' + bruto + '" como colega';
+                    btnAdicionarColega.replaceChildren(icone, texto);
+                }
+            }
+
+            function renderSelecionados() {
+                const total = selecionados.size;
+                contagemSelecionados.textContent = 'Selecionados (' + total + ')';
+                btnLimparSelecao.hidden = total === 0;
+
+                chips.replaceChildren(...Array.from(selecionados).map((id) => {
+                    const colega = colegas.find((c) => c.id === id);
+                    const chip = document.createElement('span');
+                    chip.className = 'chip';
+                    const login = document.createElement('span');
+                    login.textContent = colega.login;
+                    const remover = document.createElement('button');
+                    remover.type = 'button';
+                    remover.setAttribute('aria-label', 'Remover ' + colega.nome);
+                    remover.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                    remover.addEventListener('click', () => {
+                        selecionados.delete(id);
+                        renderResultados();
+                        renderSelecionados();
+                    });
+                    chip.append(criarAvatar(colega.nome), login, remover);
+                    return chip;
+                }));
+
+                if (total === 0) {
+                    textoResumo.textContent = 'Somente você neste evento';
+                } else {
+                    textoResumo.textContent = 'Você + ' + total + (total === 1 ? ' colega' : ' colegas') + ' neste evento';
+                }
+            }
+
+            function limparErro(chave) {
+                const aviso = form.querySelector('[data-erro="' + chave + '"]');
+                campos[chave].classList.remove('invalid');
+                aviso.textContent = '';
+                aviso.classList.remove('show');
+            }
+
+            function mostrarErros(erros) {
+                Object.keys(campos).forEach((chave) => {
+                    const mensagem = erros[chave];
+                    const aviso = form.querySelector('[data-erro="' + chave + '"]');
+                    campos[chave].classList.toggle('invalid', Boolean(mensagem));
+                    aviso.textContent = mensagem || '';
+                    aviso.classList.toggle('show', Boolean(mensagem));
+                });
+            }
+
+            function validar() {
+                const erros = {};
+                if (!campos.titulo.value.trim()) {
+                    erros.titulo = 'Informe o título do evento.';
+                }
+                if (!campos.data.value) {
+                    erros.data = 'Informe a data.';
+                } else if (campos.data.value < DATA_MIN || campos.data.value > DATA_MAX) {
+                    erros.data = 'Escolha uma data de outubro de 2026.';
+                }
+                if (!diaInteiro.checked) {
+                    if (!campos.inicio.value) {
+                        erros.inicio = 'Informe o início.';
+                    }
+                    if (!campos.termino.value) {
+                        erros.termino = 'Informe o término.';
+                    } else if (campos.inicio.value && campos.termino.value <= campos.inicio.value) {
+                        erros.termino = 'O término deve ser depois do início.';
+                    }
+                }
+                return erros;
+            }
+
+            function adicionarEvento(evento) {
+                const dia = Number(evento.data.split('-')[2]);
+                const rotulo = evento.diaInteiro ? evento.titulo : evento.inicio + ' ' + evento.titulo;
+                const detalhe = evento.local ? evento.titulo + ' em ' + evento.local : evento.titulo;
+
+                const celula = Array.from(document.querySelectorAll('.calendar-day:not(.other-month)'))
+                    .find((td) => Number(td.querySelector('.day-num').textContent) === dia);
+                if (celula) {
+                    const tag = document.createElement('div');
+                    tag.className = 'event-tag event-info';
+                    tag.textContent = rotulo;
+                    tag.title = detalhe;
+                    celula.appendChild(tag);
+                }
+
+                const diaMini = Array.from(document.querySelectorAll('.mini-calendar-grid .day-number:not(.other-month)'))
+                    .find((span) => Number(span.textContent) === dia);
+                if (diaMini) {
+                    diaMini.classList.add('has-event');
+                }
+
+                const lista = document.querySelector('.events-list');
+                const item = document.createElement('li');
+                item.className = 'event-item';
+
+                const data = document.createElement('span');
+                data.className = 'event-date';
+                data.textContent = String(dia).padStart(2, '0') + '/10';
+
+                const detalhes = document.createElement('div');
+                detalhes.className = 'event-details';
+                const titulo = document.createElement('span');
+                titulo.className = 'event-title';
+                titulo.textContent = evento.titulo;
+                const tipo = document.createElement('span');
+                tipo.className = 'event-type event-info';
+                tipo.textContent = evento.compartilhado ? 'Compartilhado' : 'Pessoal';
+                detalhes.append(titulo, tipo);
+
+                item.append(data, detalhes);
+                const posterior = Array.from(lista.children)
+                    .find((li) => parseInt(li.querySelector('.event-date').textContent, 10) > dia);
+                lista.insertBefore(item, posterior || null);
+            }
+
+            function abrir() {
+                form.reset();
+                campos.data.value = DATA_PADRAO;
+                campos.inicio.disabled = false;
+                campos.termino.disabled = false;
+                selecionados.clear();
+                busca.value = '';
+                mostrarErros({});
+                renderResultados();
+                renderSelecionados();
+                overlay.classList.add('open');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                campos.titulo.focus();
+            }
+
+            function fechar() {
+                overlay.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            $('btnCriarEvento').addEventListener('click', abrir);
+            $('btnFecharModal').addEventListener('click', fechar);
+            $('btnCancelar').addEventListener('click', fechar);
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    fechar();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                    fechar();
+                }
+            });
+
+            diaInteiro.addEventListener('change', () => {
+                campos.inicio.disabled = diaInteiro.checked;
+                campos.termino.disabled = diaInteiro.checked;
+                if (diaInteiro.checked) {
+                    campos.inicio.value = '';
+                    campos.termino.value = '';
+                    limparErro('inicio');
+                    limparErro('termino');
+                }
+            });
+
+            form.addEventListener('input', (e) => {
+                const chave = e.target.dataset.campo;
+                if (chave && e.target.classList.contains('invalid')) {
+                    limparErro(chave);
+                }
+            });
+
+            busca.addEventListener('input', renderResultados);
+            busca.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!btnAdicionarColega.hidden) {
+                        adicionarColega();
+                    }
+                }
+            });
+
+            btnAdicionarColega.addEventListener('click', adicionarColega);
+
+            btnLimparBusca.addEventListener('click', () => {
+                busca.value = '';
+                renderResultados();
+                busca.focus();
+            });
+
+            btnLimparSelecao.addEventListener('click', () => {
+                selecionados.clear();
+                renderResultados();
+                renderSelecionados();
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const erros = validar();
+                mostrarErros(erros);
+                if (Object.keys(erros).length > 0) {
+                    form.querySelector('.invalid').focus();
+                    return;
+                }
+                adicionarEvento({
+                    titulo: campos.titulo.value.trim(),
+                    data: campos.data.value,
+                    inicio: campos.inicio.value,
+                    diaInteiro: diaInteiro.checked,
+                    local: local.value.trim(),
+                    compartilhado: selecionados.size > 0
+                });
+                fechar();
+            });
+        })();
+    </script>
 </body>
 
 </html>
