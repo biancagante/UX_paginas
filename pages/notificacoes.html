@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGA CPS - Notificações</title>
+    <link rel="shortcut icon" href="../assets/images/Logo_CPS-01.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/notificacoes.css">
+    <link rel="stylesheet" href="../assets/styles/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2b4b06a916.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app-header" data-base="../"></div>
+    <script src="../assets/js/siga-store.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="notif-main-header">
+                <div class="notif-title-group">
+                    <a href="../index.html" class="btn-back" title="Voltar ao início">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    <h1>Notificações</h1>
+                </div>
+                <div class="notif-controls">
+                    <button type="button" class="btn-text" id="btnMarcarLidas" hidden>Marcar todas como lidas</button>
+                    <div class="notif-tabs" role="tablist" aria-label="Filtrar notificações">
+                        <button type="button" class="notif-tab active" role="tab" aria-selected="true"
+                            data-filtro="todas">Todas</button>
+                        <button type="button" class="notif-tab" role="tab" aria-selected="false"
+                            data-filtro="nao-lidas">Não lidas</button>
+                        <button type="button" class="notif-tab" role="tab" aria-selected="false"
+                            data-filtro="convites">Convites</button>
+                    </div>
+                </div>
+            </header>
+            <section class="notif-list" id="listaNotificacoes" aria-live="polite"></section>
+        </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <span id="toastTexto"></span>
+        <a href="calendario.html" id="toastLink" hidden>Ver no calendário</a>
+    </div>
+    <script src="../assets/js/notificacoes.js"></script>
+</body>
+
+</html>

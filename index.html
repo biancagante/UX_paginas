@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGA CPS - Aluno</title>
     <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/header.css">
     <link rel="shortcut icon" href="assets/images/Logo_CPS-01.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,18 +13,9 @@
     <script src="https://kit.fontawesome.com/2b4b06a916.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="app-header">
-        <nav class="nav-container">
-            <div class="cps-logo">
-                <img src="assets/images/cps_white.png" alt="Logo Centro Paula Souza">
-                <span class="brand-title">SIGA <span>Aluno</span></span>
-            </div>
-            <div class="header-unit">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Fatec Praia Grande</span>
-            </div>
-        </nav>
-    </header>
+    <div id="app-header" data-base=""></div>
+    <script src="assets/js/siga-store.js"></script>
+    <script src="assets/js/header.js"></script>
     <div class="app-container">
         <aside class="sidebar">
             <section class="card carteirinha-estudante">
@@ -122,7 +114,7 @@
                             Declarações</a>
                     </div>
                 </div>
-                <div class="quadro-card full-width">
+                <div class="quadro-card full-width" id="solicitacoes">
                     <div class="quadro-header header-destaque">
                         <i class="fa-solid fa-paper-plane"></i>
                         <h3>Solicitações</h3>
